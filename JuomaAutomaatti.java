@@ -2,12 +2,12 @@ import java.util.Scanner;
 
 public class JuomaAutomaatti {
 
-	private int teetä;
+	private int teetÃ¤;
 	private int kahvia;
 	private int kaakaota;
 
 	public JuomaAutomaatti() {
-		teetä = 50;
+		teetÃ¤ = 50;
 		kahvia = 50;
 		kaakaota = 50;
 	}
@@ -17,16 +17,16 @@ public class JuomaAutomaatti {
 			kahvia -= 10;
 			System.out.println("Odota hetki, kahvia valmistetaan.");
 		} else {
-			System.out.println("Kahvia ei enää jäljellä! Täytä säiliö.");
+			System.out.println("Kahvia ei enÃ¤Ã¤ jÃ¤ljellÃ¤! TÃ¤ytÃ¤ sÃ¤iliÃ¶.");
 		}
 	}
 
 	public void valmistaTee() {
-		if (teetä >= 10) {
-			teetä -= 10;
-			System.out.println("Odota hetki, teetä valmistetaan.");
+		if (teetÃ¤ >= 10) {
+			teetÃ¤ -= 10;
+			System.out.println("Odota hetki, teetÃ¤ valmistetaan.");
 		} else {
-			System.out.println("Teetä ei enää jäljellä! Täytä säiliö.");
+			System.out.println("TeetÃ¤ ei enÃ¤Ã¤ jÃ¤ljellÃ¤! TÃ¤ytÃ¤ sÃ¤iliÃ¶.");
 		}
 	}
 
@@ -35,15 +35,15 @@ public class JuomaAutomaatti {
 			kaakaota -= 10;
 			System.out.println("Odota hetki, kaakaota valmistetaan.");
 		} else {
-			System.out.println("Kaakaota ei enää jäljellä! Täytä säiliö.");
+			System.out.println("Kaakaota ei enÃ¤Ã¤ jÃ¤ljellÃ¤! TÃ¤ytÃ¤ sÃ¤iliÃ¶.");
 		}
 	}
 
-	public void täytäSäiliöt() { // Tein huvin vuoksi tämän metodin jolla voi täyttää säiliöt ja jatkaa ohjelmaa.
+	public void tÃ¤ytÃ¤SÃ¤iliÃ¶t() { // Tein huvin vuoksi tÃ¤mÃ¤n metodin jolla voi tÃ¤yttÃ¤Ã¤ sÃ¤iliÃ¶t ja jatkaa ohjelmaa.
 		kahvia = 50;
-		teetä = 50;
+		teetÃ¤ = 50;
 		kaakaota = 50;
-		System.out.println("Säiliöt täytetty!");
+		System.out.println("SÃ¤iliÃ¶t tÃ¤ytetty!");
 	}
 
 	public boolean onnistuuko() {
@@ -57,7 +57,7 @@ public class JuomaAutomaatti {
 	}
 
 	public String toString() {
-		return "Kahvia jäljellä: " + kahvia + ", teetä jäljellä: " + teetä + ", kaakaota jäljellä: " + kaakaota;
+		return "Kahvia jÃ¤ljellÃ¤: " + kahvia + ", teetÃ¤ jÃ¤ljellÃ¤: " + teetÃ¤ + ", kaakaota jÃ¤ljellÃ¤: " + kaakaota;
 	}
 
 	public static void main(String[] args) {
@@ -74,13 +74,22 @@ public class JuomaAutomaatti {
 			System.out.println("2. Tee");
 			System.out.println("3. Kaakao");
 			System.out.println("4. Lopeta");
-			System.out.println("5. Täytä säiliöt");
+			System.out.println("5. TÃ¤ytÃ¤ sÃ¤iliÃ¶t");
 			System.out.println();
 			System.out.println("*******************************");
 			valinta = lukija.nextInt();
 			System.out.println();
 			if (valinta == 1) {
-				if (maatti.kahvia >= 10) { // Poistetaan tällä if-elsellä tilttimahdollisuus jos säiliö on tyhjä
+				// TÃ¤mÃ¤n if lauseen merkitystÃ¤ en ymmÃ¤rtÃ¤nyt? Jos teet samanlaisen tarkastauksen valmistaKahvi() metodissa
+				// Niin tÃ¤Ã¤llÃ¤ sitÃ¤ ei tarvitse toistaa
+				
+				if (maatti.kahvia >= 10) { // Poistetaan tÃ¤llÃ¤ if-elsellÃ¤ tilttimahdollisuus jos sÃ¤iliÃ¶ on tyhjÃ¤
+				
+					// Miksi kutsut tÃ¤ssÃ¤ maatti.onnistuuko() ?
+					// TÃ¤mÃ¤ ohjelmalogiikka kannattaisi kapseloida JuomaAutomaatti-luokan sisÃ¤Ã¤n, ei main-metodiin. 
+					// Eli  tsekkaa valmistaKahvi() metodissa onnistuuko valmistus vai ei.
+					// NÃ¤in pÃ¤Ã¤ohjelmasi yksinkertaisuu huomattavasti
+					
 					maatti.onnistuuko();
 					if (maatti.onnistuuko() == true) {
 						maatti.valmistaKahvi();
@@ -95,7 +104,9 @@ public class JuomaAutomaatti {
 					continue;
 				}
 			} else if (valinta == 2) {
-				if (maatti.teetä >= 10) { // Poistetaan tällä if-elsellä tilttimahdollisuus jos säiliö on tyhjä
+				// Kun viittaat luokan kapseloituihin muuttujiin, olisi korrektia kÃ¤yttÃ¤Ã¤ gettereitÃ¤.
+				// TÃ¤mÃ¤ siksi, ettÃ¤ jos main-metodi olisi toisessa luokassa, ei kÃ¤yttÃ¤mÃ¤sikaltainen viittaus olisi mahdollinen
+				if (maatti.teetÃ¤ >= 10) { // Poistetaan tÃ¤llÃ¤ if-elsellÃ¤ tilttimahdollisuus jos sÃ¤iliÃ¶ on tyhjÃ¤
 					maatti.onnistuuko();
 					if (maatti.onnistuuko() == true) {
 						maatti.valmistaTee();
@@ -110,7 +121,7 @@ public class JuomaAutomaatti {
 					continue;
 				}
 			} else if (valinta == 3) {
-				if (maatti.kaakaota >= 10) { // Poistetaan tällä if-elsellä tilttimahdollisuus jos säiliö on tyhjä
+				if (maatti.kaakaota >= 10) { // Poistetaan tÃ¤llÃ¤ if-elsellÃ¤ tilttimahdollisuus jos sÃ¤iliÃ¶ on tyhjÃ¤
 					maatti.onnistuuko();
 					if (maatti.onnistuuko() == true) {
 						maatti.valmistaKaakao();
@@ -125,18 +136,20 @@ public class JuomaAutomaatti {
 					continue;
 				}
 			} else if (valinta == 5) {
-				maatti.täytäSäiliöt();
+				maatti.tÃ¤ytÃ¤SÃ¤iliÃ¶t();
 				System.out.println(maatti);
 				continue;
 			}
 
-			// Lisätään ehto valinnan oikeellisuudesta
+			// LisÃ¤tÃ¤Ã¤n ehto valinnan oikeellisuudesta
+			
+			// Voit testata yksinkertaisemmin onko valinta >= 1 ja <=5
 			else if (valinta != 1 || valinta != 2 || valinta != 3 || valinta != 4 || valinta != 5) {
 				System.out.println("Valitse 1-5!");
 
 			}
 		} while (valinta != 4);
-
+			// TÃ¤Ã¤llÃ¤ voisit tulostaa jonkun tekstin joka kertoo ettÃ¤ ohjelman suoritus loppui
 	}
 
 }
